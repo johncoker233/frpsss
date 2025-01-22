@@ -23,7 +23,11 @@ func InitServerHandler(c context.Context, req *pb.InitServerRequest) (*pb.InitSe
 			Status: &pb.Status{Code: pb.RespCode_RESP_CODE_INVALID, Message: "invalid user"},
 		}, nil
 	}
-
+	if !userInfo.IsAdmin() {
+		return &pb.InitClientResponse{
+			Status: &pb.Status{Code: pb.RespCode_RESP_CODE_FORBIDDEN, Message: "permission denied: admin role required"},
+		}, nil
+	}
 	if len(userServerID) == 0 || len(serverIP) == 0 || !utils.IsClientIDPermited(userServerID) {
 		return &pb.InitServerResponse{
 			Status: &pb.Status{Code: pb.RespCode_RESP_CODE_INVALID, Message: "request invalid"},

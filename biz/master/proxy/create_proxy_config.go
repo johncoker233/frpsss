@@ -30,6 +30,26 @@ func CreateProxyConfig(c context.Context, req *pb.CreateProxyConfigRequest) (*pb
 		serverID = req.GetServerId()
 	)
 
+    if !userInfo.Valid() {
+        return &pb.CreateProxyConfigResponse{
+            Status: &pb.Status{
+                Code:    pb.RespCode_RESP_CODE_INVALID,
+                Message: "invalid user",
+            },
+        }, nil
+    }
+
+    // 添加服务器角色权限检查
+    if err := dao.CheckServerRole(userInfo, serverID); err != nil {
+        logger.Logger(c).WithError(err).Errorf("permission denied for server: [%s], user role: [%s]", 
+            serverID, userInfo.GetRole())
+        return &pb.CreateProxyConfigResponse{
+            Status: &pb.Status{
+                Code:    pb.RespCode_RESP_CODE_FORBIDDEN,
+                Message: fmt.Sprintf("permission denied: %v", err),
+            },
+        }, nil
+    }
 	// 1. 检查是否有已连接该服务端的客户端
 	// 2. 检查是否有Shadow客户端
 	// 3. 如果没有，则新建Shadow客户端和子客户端

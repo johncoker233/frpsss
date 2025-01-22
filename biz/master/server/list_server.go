@@ -27,7 +27,11 @@ func ListServersHandler(c context.Context, req *pb.ListServersRequest) (*pb.List
 			Status: &pb.Status{Code: pb.RespCode_RESP_CODE_INVALID, Message: "invalid user"},
 		}, nil
 	}
-
+	if !userInfo.IsAdmin() {
+		return &pb.InitClientResponse{
+			Status: &pb.Status{Code: pb.RespCode_RESP_CODE_FORBIDDEN, Message: "permission denied: admin role required"},
+		}, nil
+	}
 	if hasKeyword {
 		servers, err = dao.ListServersWithKeyword(userInfo, page, pageSize, keyword)
 	} else {

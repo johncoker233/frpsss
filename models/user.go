@@ -37,6 +37,8 @@ type UserEntity struct {
 	Role      string `json:"role"`
 	TenantID  int    `json:"tenant_id"`
 	Token     string `json:"token"`
+	Bandwidth int    `json:"Bandwidth"`
+	balance   int    `json:"balance"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
 	DeletedAt gorm.DeletedAt `gorm:"index"`
@@ -53,7 +55,12 @@ func (u *UserEntity) GetUserIDStr() string {
 func (u *UserEntity) GetUserName() string {
 	return u.UserName
 }
-
+func (u *UserEntity) GetBandwidth() int {
+	return u.Bandwidth
+}
+func (u *UserEntity) GetBalance() int {
+	return u.balance
+}
 func (u *UserEntity) GetEmail() string {
 	return u.Email
 }
@@ -85,6 +92,8 @@ func (u *UserEntity) GetSafeUserInfo() UserEntity {
 		Email:    u.Email,
 		Status:   u.Status,
 		Role:     u.Role,
+		Bandwidth:u.Bandwidth
+		balance:  u.balance
 	}
 }
 

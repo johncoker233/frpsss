@@ -21,6 +21,7 @@ func InitClientHandler(c context.Context, req *pb.InitClientRequest) (*pb.InitCl
 		}, nil
 	}
 
+
 	if len(userClientID) == 0 || !utils.IsClientIDPermited(userClientID) {
 		return &pb.InitClientResponse{
 			Status: &pb.Status{Code: pb.RespCode_RESP_CODE_INVALID, Message: "invalid client id"},
