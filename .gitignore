@@ -1,0 +1,10 @@
+.vscode
+__debug*
+.env
+tmp
+*.db
+frp-panel
+out
+cmd/out
+frp-panel*
+dist/
