@@ -7,7 +7,7 @@ import (
 	"github.com/VaalaCat/frp-panel/logger"
 	v1 "github.com/fatedier/frp/pkg/config/v1"
 	"github.com/fatedier/frp/pkg/config/v1/validation"
-	"github.com/fatedier/frp/pkg/metrics/mem"
+	"github.com/VaalaCat/frp-panel/services/server/mem"
 	"github.com/fatedier/frp/pkg/util/log"
 	"github.com/fatedier/frp/server"
 	"github.com/sirupsen/logrus"

@@ -76,129 +76,136 @@ func GetProxyStatsByServerID(userInfo models.UserInfo, serverID string) ([]*mode
 		return item.ProxyStatsEntity
 	}), nil
 }
-
 func AdminUpdateProxyStats(srv *models.ServerEntity, inputs []*pb.ProxyInfo) error {
-	if srv.ServerID == "" {
-		return fmt.Errorf("invalid server id")
-	}
+    if srv.ServerID == "" {
+        return fmt.Errorf("invalid server id")
+    }
 
-	db := models.GetDBManager().GetDefaultDB()
-	return db.Transaction(func(tx *gorm.DB) error {
+    db := models.GetDBManager().GetDefaultDB()
+    return db.Transaction(func(tx *gorm.DB) error {
 
-		queryResults := make([]interface{}, 3)
-		p := pool.New().WithErrors()
-		p.Go(
-			func() error {
-				user := models.User{}
-				if err := tx.Where(&models.User{
-					UserEntity: &models.UserEntity{
-						UserID: srv.UserID,
-					},
-				}).First(&user).Error; err != nil {
-					return err
-				}
-				queryResults[0] = user
-				return nil
-			},
-		)
-		p.Go(
-			func() error {
-				clients := []*models.Client{}
-				if err := tx.
-					Where(&models.Client{ClientEntity: &models.ClientEntity{
-						UserID:   srv.UserID,
-						ServerID: srv.ServerID,
-					}}).Find(&clients).Error; err != nil {
-					return err
-				}
-				queryResults[1] = clients
-				return nil
-			},
-		)
-		p.Go(
-			func() error {
-				oldProxy := []*models.ProxyStats{}
-				if err := tx.
-					Where(&models.ProxyStats{ProxyStatsEntity: &models.ProxyStatsEntity{
-						UserID:   srv.UserID,
-						ServerID: srv.ServerID,
-					}}).Find(&oldProxy).Error; err != nil {
-					return err
-				}
-				oldProxyMap := lo.SliceToMap(oldProxy, func(p *models.ProxyStats) (string, *models.ProxyStats) {
-					return p.Name, p
-				})
-				queryResults[2] = oldProxyMap
-				return nil
-			},
-		)
-		if err := p.Wait(); err != nil {
-			return err
-		}
+        queryResults := make([]interface{}, 3)
+        p := pool.New().WithErrors()
+        p.Go(
+            func() error {
+                user := models.User{}
+                if err := tx.Where(&models.User{
+                    UserEntity: &models.UserEntity{
+                        UserID: srv.UserID,
+                    },
+                }).First(&user).Error; err != nil {
+                    return err
+                }
+                queryResults[0] = user
+                return nil
+            },
+        )
+        p.Go(
+            func() error {
+                clients := []*models.Client{}
+                if err := tx.
+                    Where(&models.Client{ClientEntity: &models.ClientEntity{
+                        UserID:   srv.UserID,
+                        ServerID: srv.ServerID,
+                    }}).Find(&clients).Error; err != nil {
+                    return err
+                }
+                queryResults[1] = clients
+                return nil
+            },
+        )
+        p.Go(
+            func() error {
+                oldProxy := []*models.ProxyStats{}
+                if err := tx.
+                    Where(&models.ProxyStats{ProxyStatsEntity: &models.ProxyStatsEntity{
+                        UserID:   srv.UserID,
+                        ServerID: srv.ServerID,
+                    }}).Find(&oldProxy).Error; err != nil {
+                    return err
+                }
+                oldProxyMap := lo.SliceToMap(oldProxy, func(p *models.ProxyStats) (string, *models.ProxyStats) {
+                    return p.Name, p
+                })
+                queryResults[2] = oldProxyMap
+                return nil
+            },
+        )
+        if err := p.Wait(); err != nil {
+            return err
+        }
 
-		user := queryResults[0].(models.User)
-		clients := queryResults[1].([]*models.Client)
-		oldProxyMap := queryResults[2].(map[string]*models.ProxyStats)
+        user := queryResults[0].(models.User)
+        clients := queryResults[1].([]*models.Client)
+        oldProxyMap := queryResults[2].(map[string]*models.ProxyStats)
 
-		inputMap := map[string]*pb.ProxyInfo{}
-		proxyMap := map[string]*models.ProxyStatsEntity{}
-		for _, proxyInfo := range inputs {
-			if proxyInfo == nil {
-				continue
-			}
-			proxyName := strings.TrimPrefix(proxyInfo.GetName(), user.UserName+".")
-			proxyMap[proxyName] = &models.ProxyStatsEntity{
-				ServerID:        srv.ServerID,
-				Name:            proxyName,
-				Type:            proxyInfo.GetType(),
-				UserID:          srv.UserID,
-				TenantID:        srv.TenantID,
-				TodayTrafficIn:  proxyInfo.GetTodayTrafficIn(),
-				TodayTrafficOut: proxyInfo.GetTodayTrafficOut(),
-			}
-			inputMap[proxyName] = proxyInfo
-		}
+        // 获取用户角色的百分比
+        rolePercentage := models.RolePercentage{}
+        if err := tx.Where(&models.RolePercentage{Role: user.Role}).First(&rolePercentage).Error; err != nil {
+            return err
+        }
 
-		proxyEntityMap := map[string]*models.ProxyStatsEntity{}
-		for _, client := range clients {
-			cliCfg, err := client.GetConfigContent()
-			if err != nil || cliCfg == nil {
-				continue
-			}
-			for _, cfg := range cliCfg.Proxies {
-				if proxy, ok := proxyMap[cfg.GetBaseConfig().Name]; ok {
-					proxy.ClientID = client.ClientID
-					proxy.OriginClientID = client.OriginClientID
-					proxyEntityMap[proxy.Name] = proxy
-				}
-			}
-		}
+        proxyEntityMap := map[string]*models.ProxyStatsEntity{}
+        for _, client := range clients {
+            cliCfg, err := client.GetConfigContent()
+            if err != nil || cliCfg == nil {
+                continue
+            }
+            for _, cfg := range cliCfg.Proxies {
+                if proxy, ok := proxyMap[cfg.GetBaseConfig().Name]; ok {
+                    proxy.ClientID = client.ClientID
+                    proxy.OriginClientID = client.OriginClientID
+                    proxyEntityMap[proxy.Name] = proxy
+                }
+            }
+        }
 
-		nowTime := time.Now()
-		results := lo.Values(lo.MapValues(proxyEntityMap, func(p *models.ProxyStatsEntity, name string) *models.ProxyStats {
-			item := &models.ProxyStats{
-				ProxyStatsEntity: p,
-			}
-			if oldProxy, ok := oldProxyMap[name]; ok {
-				item.ProxyID = oldProxy.ProxyID
-				firstSync := inputMap[name].GetFirstSync()
-				isSameDay := utils.IsSameDay(nowTime, oldProxy.UpdatedAt)
+        nowTime := time.Now()
+        results := lo.Values(lo.MapValues(proxyEntityMap, func(p *models.ProxyStatsEntity, name string) *models.ProxyStats {
+            item := &models.ProxyStats{
+                ProxyStatsEntity: p,
+            }
+            if oldProxy, ok := oldProxyMap[name]; ok {
+                item.ProxyID = oldProxy.ProxyID
+                firstSync := inputMap[name].GetFirstSync()
+                isSameDay := utils.IsSameDay(nowTime, oldProxy.UpdatedAt)
 
-				item.HistoryTrafficIn = oldProxy.HistoryTrafficIn
-				item.HistoryTrafficOut = oldProxy.HistoryTrafficOut
-				if !isSameDay || firstSync {
-					item.HistoryTrafficIn += oldProxy.TodayTrafficIn
-					item.HistoryTrafficOut += oldProxy.TodayTrafficOut
-				}
-			}
-			return item
-		}))
+                item.HistoryTrafficIn = oldProxy.HistoryTrafficIn
+                item.HistoryTrafficOut = oldProxy.HistoryTrafficOut
+                if !isSameDay || firstSync {
+                    item.HistoryTrafficIn += oldProxy.TodayTrafficIn
+                    item.HistoryTrafficOut += oldProxy.TodayTrafficOut
+                }
 
-		if len(results) > 0 {
-			return tx.Save(results).Error
-		}
-		return nil
-	})
+                // 扣取用户流量
+                trafficIn := oldProxy.TodayTrafficIn * int64(rolePercentage.Percentage) / 100
+                trafficOut := oldProxy.TodayTrafficOut * int64(rolePercentage.Percentage) / 100
+                user.Bandwidth -= trafficIn + trafficOut
+                if user.Bandwidth < 0 {
+                    user.Bandwidth = 0
+                }
+                if err := tx.Save(&user).Error; err != nil {
+                    return err
+                }
+
+                // 如果用户流量扣到0，停止当前用户的所有代理
+                if user.Bandwidth == 0 {
+                    for _, proxy := range proxyEntityMap {
+                        proxy.Status = "stopped"
+                        if err := tx.Save(proxy).Error; err != nil {
+                            return err
+                        }
+                    }
+                }
+            }
+            return item
+        }))
+
+        if len(results) > 0 {
+            return tx.Save(results).Error
+        }
+        return nil
+    })
 }
 
 func AdminGetTenantProxyStats(tenantID int) ([]*models.ProxyStatsEntity, error) {
