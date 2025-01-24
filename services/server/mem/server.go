@@ -22,7 +22,61 @@ import (
 	"github.com/fatedier/frp/pkg/util/metric"
 	server "github.com/fatedier/frp/server/metrics"
 )
+// 定义 Collector 接口
+type Collector interface {
+    // 统计信息收集方法
+    CollectStatistics() error
+}
 
+// 定义 ServerStatistics 结构体
+type ServerStatistics struct {
+    // 服务器统计信息字段
+    ReserveDays      int    // 保留天数
+    TotalClientCount int    // 总客户端数
+    OnlineCount      int    // 在线客户端数
+    // 其他服务器统计相关字段
+}
+
+// 定义 ProxyStatistics 结构体 
+type ProxyStatistics struct {
+    // 代理统计信息字段
+    Name          string    // 代理名称
+    Type          string    // 代理类型
+    Status        string    // 代理状态
+    TodayTraffic  int64    // 今日流量
+    TotalTraffic  int64    // 总流量
+    // 其他代理统计相关字段
+}
+
+// 定义 ServerStats 结构体
+type ServerStats struct {
+    // 服务器状态统计
+    UpTime       int64     // 运行时间
+    ConnCount    int       // 连接数
+    CPUPercent   float64   // CPU使用率
+    MemUsedBytes int64     // 内存使用
+    // 其他状态统计字段
+}
+
+// 定义 ProxyStats 结构体
+type ProxyStats struct {
+    // 代理状态统计
+    Name       string     // 代理名称 
+    Type       string     // 代理类型
+    Traffic    int64      // 流量统计
+    Bandwidth  int64      // 带宽使用
+    // 其他代理状态字段
+}
+
+// 定义 ProxyTrafficInfo 结构体
+type ProxyTrafficInfo struct {
+    // 代理流量信息
+    Name          string    // 代理名称
+    TrafficIn     int64     // 入站流量
+    TrafficOut    int64     // 出站流量
+    CurConnCount  int       // 当前连接数
+    // 其他流量相关字段
+}
 var (
 	sm = newServerMetrics()
 
