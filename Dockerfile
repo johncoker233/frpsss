@@ -8,7 +8,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/re
 ENV TZ Asia/Shanghai
 
 WORKDIR /app
-COPY ./frp-panel-${ARCH} /app/frp-panel
+COPY ./frp-panel /app/frp-panel
 COPY ./etc /app/etc
 
 RUN ln -sf /app/etc/Shanghai /etc/localtime && mv /app/etc/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt && mkdir -p /data
