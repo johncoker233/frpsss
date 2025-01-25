@@ -34,13 +34,12 @@ jobs:
         uses: arduino/setup-protoc@v3
       - name: Compile server
         run: bash ./build.sh
-      - uses: "marvinpinto/action-automatic-releases@latest"
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: true
-          automatic_release_tag: latest
-          files: |
-            dist/*
+          name: frpp-builds
+          path: dist/*
+          retention-days: 5
       - name: Setup ko
         uses: ko-build/setup-ko@v0.6
         env:
