@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/VaalaCat/frp-panel/logger"
+	"fysj.net/v2/logger"
 	"github.com/go-co-op/gocron/v2"
 )
 

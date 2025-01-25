@@ -4,10 +4,10 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/VaalaCat/frp-panel/conf"
-	"github.com/VaalaCat/frp-panel/dao"
-	"github.com/VaalaCat/frp-panel/middleware"
-	"github.com/VaalaCat/frp-panel/pb"
+	"fysj.net/v2/conf"
+	"fysj.net/v2/dao"
+	"fysj.net/v2/middleware"
+	"fysj.net/v2/pb"
 	"github.com/gin-gonic/gin"
 )
 

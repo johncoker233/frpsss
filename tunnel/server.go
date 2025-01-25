@@ -3,7 +3,7 @@ package tunnel
 import (
 	"sync"
 
-	"github.com/VaalaCat/frp-panel/services/server"
+	"fysj.net/v2/services/server"
 	"github.com/fatedier/frp/pkg/metrics"
 )
 

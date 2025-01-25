@@ -3,9 +3,9 @@ package client
 import (
 	"context"
 
-	"github.com/VaalaCat/frp-panel/logger"
-	"github.com/VaalaCat/frp-panel/pb"
-	"github.com/VaalaCat/frp-panel/tunnel"
+	"fysj.net/v2/logger"
+	"fysj.net/v2/pb"
+	"fysj.net/v2/tunnel"
 )
 
 func StopFRPCHandler(ctx context.Context, req *pb.StopFRPCRequest) (*pb.StopFRPCResponse, error) {

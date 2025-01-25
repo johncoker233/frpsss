@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/VaalaCat/frp-panel/biz/master/client"
-	"github.com/VaalaCat/frp-panel/biz/master/server"
-	"github.com/VaalaCat/frp-panel/logger"
-	"github.com/VaalaCat/frp-panel/pb"
+	"fysj.net/v2/biz/master/client"
+	"fysj.net/v2/biz/master/server"
+	"fysj.net/v2/logger"
+	"fysj.net/v2/pb"
 )
 
 func PTYConnect(sender pb.Master_PTYConnectServer) error {

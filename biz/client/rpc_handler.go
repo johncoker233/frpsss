@@ -5,11 +5,11 @@ import (
 	"fmt"
 	"runtime/debug"
 
-	"github.com/VaalaCat/frp-panel/common"
+	"fysj.net/v2/common"
 
-	"github.com/VaalaCat/frp-panel/conf"
-	"github.com/VaalaCat/frp-panel/logger"
-	"github.com/VaalaCat/frp-panel/pb"
+	"fysj.net/v2/conf"
+	"fysj.net/v2/logger"
+	"fysj.net/v2/pb"
 	"google.golang.org/protobuf/proto"
 )
 

@@ -3,7 +3,7 @@ package common
 import (
 	"context"
 
-	"github.com/VaalaCat/frp-panel/models"
+	"fysj.net/v2/models"
 )
 
 func GetUserInfo(c context.Context) models.UserInfo {

@@ -3,9 +3,9 @@ package auth
 import (
 	"net/http"
 
-	"github.com/VaalaCat/frp-panel/cache"
-	"github.com/VaalaCat/frp-panel/dao"
-	"github.com/VaalaCat/frp-panel/logger"
+	"fysj.net/v2/cache"
+	"fysj.net/v2/dao"
+	"fysj.net/v2/logger"
 	plugin "github.com/fatedier/frp/pkg/plugin/server"
 	"github.com/gin-gonic/gin"
 )

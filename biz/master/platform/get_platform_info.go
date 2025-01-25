@@ -1,10 +1,10 @@
 package platform
 
 import (
-	"github.com/VaalaCat/frp-panel/common"
-	"github.com/VaalaCat/frp-panel/conf"
-	"github.com/VaalaCat/frp-panel/dao"
-	"github.com/VaalaCat/frp-panel/pb"
+	"fysj.net/v2/common"
+	"fysj.net/v2/conf"
+	"fysj.net/v2/dao"
+	"fysj.net/v2/pb"
 	"github.com/gin-gonic/gin"
 )
 

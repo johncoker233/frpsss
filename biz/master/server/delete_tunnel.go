@@ -3,11 +3,11 @@ package server
 import (
 	"context"
 
-	"github.com/VaalaCat/frp-panel/common"
-	"github.com/VaalaCat/frp-panel/dao"
-	"github.com/VaalaCat/frp-panel/logger"
-	"github.com/VaalaCat/frp-panel/pb"
-	"github.com/VaalaCat/frp-panel/rpc"
+	"fysj.net/v2/common"
+	"fysj.net/v2/dao"
+	"fysj.net/v2/logger"
+	"fysj.net/v2/pb"
+	"fysj.net/v2/rpc"
 )
 
 func RemoveFrpsHandler(c context.Context, req *pb.RemoveFRPSRequest) (*pb.RemoveFRPSResponse, error) {

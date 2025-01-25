@@ -3,8 +3,8 @@ package dao
 import (
 	"fmt"
 
-	"github.com/VaalaCat/frp-panel/common"
-	"github.com/VaalaCat/frp-panel/models"
+	"fysj.net/v2/common"
+	"fysj.net/v2/models"
 	"github.com/google/uuid"
 	"github.com/samber/lo"
 )

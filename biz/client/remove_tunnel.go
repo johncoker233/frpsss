@@ -5,8 +5,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/VaalaCat/frp-panel/logger"
-	"github.com/VaalaCat/frp-panel/pb"
+	"fysj.net/v2/logger"
+	"fysj.net/v2/pb"
 )
 
 func RemoveFrpcHandler(ctx context.Context, req *pb.RemoveFRPCRequest) (*pb.RemoveFRPCResponse, error) {

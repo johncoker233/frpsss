@@ -7,8 +7,8 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/VaalaCat/frp-panel/logger"
-	"github.com/VaalaCat/frp-panel/utils"
+	"fysj.net/v2/logger"
+	"fysj.net/v2/utils"
 	"github.com/fatedier/frp/client"
 	"github.com/fatedier/frp/client/proxy"
 	v1 "github.com/fatedier/frp/pkg/config/v1"

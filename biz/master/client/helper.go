@@ -4,10 +4,10 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/VaalaCat/frp-panel/common"
-	"github.com/VaalaCat/frp-panel/dao"
-	"github.com/VaalaCat/frp-panel/logger"
-	"github.com/VaalaCat/frp-panel/models"
+	"fysj.net/v2/common"
+	"fysj.net/v2/dao"
+	"fysj.net/v2/logger"
+	"fysj.net/v2/models"
 	"github.com/samber/lo"
 	"github.com/tiendc/go-deepcopy"
 )

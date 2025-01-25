@@ -3,10 +3,10 @@ package auth
 import (
 	"context"
 
-	"github.com/VaalaCat/frp-panel/cache"
-	"github.com/VaalaCat/frp-panel/dao"
-	"github.com/VaalaCat/frp-panel/logger"
-	"github.com/VaalaCat/frp-panel/models"
+	"fysj.net/v2/cache"
+	"fysj.net/v2/dao"
+	"fysj.net/v2/logger"
+	"fysj.net/v2/models"
 	"github.com/samber/lo"
 	"github.com/sirupsen/logrus"
 )

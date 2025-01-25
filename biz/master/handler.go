@@ -3,16 +3,16 @@ package master
 import (
 	"embed"
 
-	"github.com/VaalaCat/frp-panel/biz/master/auth"
-	"github.com/VaalaCat/frp-panel/biz/master/client"
-	"github.com/VaalaCat/frp-panel/biz/master/platform"
-	"github.com/VaalaCat/frp-panel/biz/master/proxy"
-	"github.com/VaalaCat/frp-panel/biz/master/server"
-	"github.com/VaalaCat/frp-panel/biz/master/shell"
-	"github.com/VaalaCat/frp-panel/biz/master/streamlog"
-	"github.com/VaalaCat/frp-panel/biz/master/user"
-	"github.com/VaalaCat/frp-panel/common"
-	"github.com/VaalaCat/frp-panel/middleware"
+	"fysj.net/v2/biz/master/auth"
+	"fysj.net/v2/biz/master/client"
+	"fysj.net/v2/biz/master/platform"
+	"fysj.net/v2/biz/master/proxy"
+	"fysj.net/v2/biz/master/server"
+	"fysj.net/v2/biz/master/shell"
+	"fysj.net/v2/biz/master/streamlog"
+	"fysj.net/v2/biz/master/user"
+	"fysj.net/v2/common"
+	"fysj.net/v2/middleware"
 	"github.com/gin-gonic/gin"
 )
 

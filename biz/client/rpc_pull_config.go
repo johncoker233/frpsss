@@ -4,12 +4,12 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/VaalaCat/frp-panel/logger"
-	"github.com/VaalaCat/frp-panel/pb"
-	"github.com/VaalaCat/frp-panel/rpc"
-	"github.com/VaalaCat/frp-panel/services/client"
-	"github.com/VaalaCat/frp-panel/tunnel"
-	"github.com/VaalaCat/frp-panel/utils"
+	"fysj.net/v2/logger"
+	"fysj.net/v2/pb"
+	"fysj.net/v2/rpc"
+	"fysj.net/v2/services/client"
+	"fysj.net/v2/tunnel"
+	"fysj.net/v2/utils"
 	"github.com/samber/lo"
 )
 

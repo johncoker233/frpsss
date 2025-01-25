@@ -3,13 +3,12 @@ package dao
 import (
 	"context"
 	"fmt"
-	"strings"
 	"time"
 
-	"github.com/VaalaCat/frp-panel/logger"
-	"github.com/VaalaCat/frp-panel/models"
-	"github.com/VaalaCat/frp-panel/pb"
-	"github.com/VaalaCat/frp-panel/utils"
+	"fysj.net/v2/logger"
+	"fysj.net/v2/models"
+	"fysj.net/v2/pb"
+	"fysj.net/v2/utils"
 	"github.com/samber/lo"
 	"github.com/sourcegraph/conc/pool"
 	"gorm.io/gorm"
@@ -76,61 +75,82 @@ func GetProxyStatsByServerID(userInfo models.UserInfo, serverID string) ([]*mode
 		return item.ProxyStatsEntity
 	}), nil
 }
+
 func AdminUpdateProxyStats(srv *models.ServerEntity, inputs []*pb.ProxyInfo) error {
     if srv.ServerID == "" {
         return fmt.Errorf("invalid server id")
     }
 
+    // 构建输入数据map
+    inputMap := lo.SliceToMap(inputs, func(p *pb.ProxyInfo) (string, *pb.ProxyInfo) {
+		return *p.Name, p
+    })
+
+    // 构建代理实体map 
+    proxyMap := make(map[string]*models.ProxyStatsEntity)
+	for _, input := range inputs {
+		proxyMap[input.GetName()] = &models.ProxyStatsEntity{
+			Name:            input.GetName(),
+			UserID:          srv.UserID,
+			ServerID:        srv.ServerID,
+			TodayTrafficIn:  input.GetTodayTrafficIn(),
+			TodayTrafficOut: input.GetTodayTrafficOut(),
+		}
+	}
+
     db := models.GetDBManager().GetDefaultDB()
     return db.Transaction(func(tx *gorm.DB) error {
-
+        // 并发查询数据
         queryResults := make([]interface{}, 3)
         p := pool.New().WithErrors()
-        p.Go(
-            func() error {
-                user := models.User{}
-                if err := tx.Where(&models.User{
-                    UserEntity: &models.UserEntity{
-                        UserID: srv.UserID,
-                    },
-                }).First(&user).Error; err != nil {
-                    return err
-                }
-                queryResults[0] = user
-                return nil
-            },
-        )
-        p.Go(
-            func() error {
-                clients := []*models.Client{}
-                if err := tx.
-                    Where(&models.Client{ClientEntity: &models.ClientEntity{
-                        UserID:   srv.UserID,
-                        ServerID: srv.ServerID,
-                    }}).Find(&clients).Error; err != nil {
-                    return err
-                }
-                queryResults[1] = clients
-                return nil
-            },
-        )
-        p.Go(
-            func() error {
-                oldProxy := []*models.ProxyStats{}
-                if err := tx.
-                    Where(&models.ProxyStats{ProxyStatsEntity: &models.ProxyStatsEntity{
-                        UserID:   srv.UserID,
-                        ServerID: srv.ServerID,
-                    }}).Find(&oldProxy).Error; err != nil {
-                    return err
-                }
-                oldProxyMap := lo.SliceToMap(oldProxy, func(p *models.ProxyStats) (string, *models.ProxyStats) {
-                    return p.Name, p
-                })
-                queryResults[2] = oldProxyMap
-                return nil
-            },
-        )
+        
+        // 查询用户信息
+        p.Go(func() error {
+            user := models.User{}
+            if err := tx.Where(&models.User{
+                UserEntity: &models.UserEntity{
+                    UserID: srv.UserID,
+                },
+            }).First(&user).Error; err != nil {
+                return err
+            }
+            queryResults[0] = user
+            return nil
+        })
+
+        // 查询客户端信息
+        p.Go(func() error {
+            clients := []*models.Client{}
+            if err := tx.Where(&models.Client{
+                ClientEntity: &models.ClientEntity{
+                    UserID:   srv.UserID,
+                    ServerID: srv.ServerID,
+                },
+            }).Find(&clients).Error; err != nil {
+                return err
+            }
+            queryResults[1] = clients
+            return nil
+        })
+
+        // 查询历史代理统计信息
+        p.Go(func() error {
+            oldProxy := []*models.ProxyStats{}
+            if err := tx.Where(&models.ProxyStats{
+                ProxyStatsEntity: &models.ProxyStatsEntity{
+                    UserID:   srv.UserID,
+                    ServerID: srv.ServerID,
+                },
+            }).Find(&oldProxy).Error; err != nil {
+                return err
+            }
+            oldProxyMap := lo.SliceToMap(oldProxy, func(p *models.ProxyStats) (string, *models.ProxyStats) {
+                return p.Name, p
+            })
+            queryResults[2] = oldProxyMap
+            return nil
+        })
+
         if err := p.Wait(); err != nil {
             return err
         }
@@ -139,12 +159,15 @@ func AdminUpdateProxyStats(srv *models.ServerEntity, inputs []*pb.ProxyInfo) err
         clients := queryResults[1].([]*models.Client)
         oldProxyMap := queryResults[2].(map[string]*models.ProxyStats)
 
-        // 获取用户角色的百分比
+        // 获取角色流量百分比
         rolePercentage := models.RolePercentage{}
-        if err := tx.Where(&models.RolePercentage{Role: user.Role}).First(&rolePercentage).Error; err != nil {
+        if err := tx.Where(&models.RolePercentage{
+            Role: user.Role,
+        }).First(&rolePercentage).Error; err != nil {
             return err
         }
 
+        // 关联客户端与代理
         proxyEntityMap := map[string]*models.ProxyStatsEntity{}
         for _, client := range clients {
             cliCfg, err := client.GetConfigContent()
@@ -160,52 +183,81 @@ func AdminUpdateProxyStats(srv *models.ServerEntity, inputs []*pb.ProxyInfo) err
             }
         }
 
+        // 更新统计数据
         nowTime := time.Now()
         results := lo.Values(lo.MapValues(proxyEntityMap, func(p *models.ProxyStatsEntity, name string) *models.ProxyStats {
             item := &models.ProxyStats{
                 ProxyStatsEntity: p,
             }
-            if oldProxy, ok := oldProxyMap[name]; ok {
-                item.ProxyID = oldProxy.ProxyID
-                firstSync := inputMap[name].GetFirstSync()
-                isSameDay := utils.IsSameDay(nowTime, oldProxy.UpdatedAt)
+			if oldProxy, ok := oldProxyMap[name]; ok {
+				item.ProxyID = oldProxy.ProxyID
+				firstSync := inputMap[name].GetFirstSync()
+				isSameDay := utils.IsSameDay(nowTime, oldProxy.UpdatedAt)
+		
+				// 基础历史流量
+				item.HistoryTrafficIn = oldProxy.HistoryTrafficIn
+				item.HistoryTrafficOut = oldProxy.HistoryTrafficOut
+				
+				// 设置今日流量为当前上报值
+				newTodayIn := inputMap[name].GetTodayTrafficIn()
+				newTodayOut := inputMap[name].GetTodayTrafficOut()
+				
+				if !isSameDay || firstSync {
+					// 不同天或首次同步,累计昨日流量到历史
+					item.HistoryTrafficIn += oldProxy.TodayTrafficIn
+					item.HistoryTrafficOut += oldProxy.TodayTrafficOut
+					
+					// 记录历史
+					historyStats := &models.HistoryProxyStats{
+						ProxyID:        oldProxy.ProxyID,
+						ServerID:       oldProxy.ServerID,
+						ClientID:       oldProxy.ClientID,
+						OriginClientID: oldProxy.OriginClientID,
+						Name:          oldProxy.Name,
+						Type:          oldProxy.Type,
+						UserID:        oldProxy.UserID,
+						TenantID:      oldProxy.TenantID,
+						TrafficIn:     oldProxy.TodayTrafficIn,
+						TrafficOut:    oldProxy.TodayTrafficOut,
+					}
+					if err := tx.Create(historyStats).Error; err != nil {
+						return nil
+					}
+					
+					// 重置今日流量
+					item.TodayTrafficIn = newTodayIn
+					item.TodayTrafficOut = newTodayOut
+				} else {
+					// 同一天,累加今日流量
+					item.TodayTrafficIn = oldProxy.TodayTrafficIn + newTodayIn
+					item.TodayTrafficOut = oldProxy.TodayTrafficOut + newTodayOut
+				}
+		
+				// 计算需要扣除的流量
+				trafficIn := newTodayIn * int64(rolePercentage.Percentage) / 100
+				trafficOut := newTodayOut * int64(rolePercentage.Percentage) / 100
+				user.Bandwidth = int(int64(user.Bandwidth) - (trafficIn + trafficOut))
+				if user.Bandwidth < 0 {
+					user.Bandwidth = 0
+				}
+				
+				if err := tx.Save(&user).Error; err != nil {
+					return nil
+				}
+			} else {
+				// 新代理,直接使用上报流量
+				item.TodayTrafficIn = inputMap[name].GetTodayTrafficIn()
+				item.TodayTrafficOut = inputMap[name].GetTodayTrafficOut()
+			}
+			return item
+		}))
 
-                item.HistoryTrafficIn = oldProxy.HistoryTrafficIn
-                item.HistoryTrafficOut = oldProxy.HistoryTrafficOut
-                if !isSameDay || firstSync {
-                    item.HistoryTrafficIn += oldProxy.TodayTrafficIn
-                    item.HistoryTrafficOut += oldProxy.TodayTrafficOut
-                }
-
-                // 扣取用户流量
-                trafficIn := oldProxy.TodayTrafficIn * int64(rolePercentage.Percentage) / 100
-                trafficOut := oldProxy.TodayTrafficOut * int64(rolePercentage.Percentage) / 100
-                user.Bandwidth -= trafficIn + trafficOut
-                if user.Bandwidth < 0 {
-                    user.Bandwidth = 0
-                }
-                if err := tx.Save(&user).Error; err != nil {
-                    return err
-                }
-
-                // 如果用户流量扣到0，停止当前用户的所有代理
-                if user.Bandwidth == 0 {
-                    for _, proxy := range proxyEntityMap {
-                        proxy.Status = "stopped"
-                        if err := tx.Save(proxy).Error; err != nil {
-                            return err
-                        }
-                    }
-                }
-            }
-            return item
-        }))
-
-        if len(results) > 0 {
-            return tx.Save(results).Error
-        }
-        return nil
-    })
+		// 批量保存更新
+		if len(results) > 0 {
+			return tx.Save(results).Error
+		}
+		return nil
+	})
 }
 
 func AdminGetTenantProxyStats(tenantID int) ([]*models.ProxyStatsEntity, error) {

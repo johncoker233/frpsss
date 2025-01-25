@@ -6,7 +6,7 @@ import (
 	"html/template"
 	"runtime"
 
-	"github.com/VaalaCat/frp-panel/pb"
+	"fysj.net/v2/pb"
 )
 
 var (

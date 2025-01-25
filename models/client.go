@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/VaalaCat/frp-panel/utils"
+	"fysj.net/v2/utils"
 	v1 "github.com/fatedier/frp/pkg/config/v1"
 	"github.com/samber/lo"
 	"gorm.io/gorm"

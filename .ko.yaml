@@ -6,10 +6,10 @@ builds:
   main: ./cmd/frpp
   ldflags:
   - -s -w
-  - -X github.com/VaalaCat/frp-panel/conf.buildDate={{.Date}}
-  - -X github.com/VaalaCat/frp-panel/conf.gitCommit={{.Git.FullCommit}}
-  - -X github.com/VaalaCat/frp-panel/conf.gitVersion={{.Git.Tag}}
-  - -X github.com/VaalaCat/frp-panel/conf.gitBranch={{.Git.Branch}}
+  - -X fysj.net/v2/conf.buildDate={{.Date}}
+  - -X fysj.net/v2/conf.gitCommit={{.Git.FullCommit}}
+  - -X fysj.net/v2/conf.gitVersion={{.Git.Tag}}
+  - -X fysj.net/v2/conf.gitBranch={{.Git.Branch}}
 
 defaultPlatforms:
 - all

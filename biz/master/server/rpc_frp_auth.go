@@ -4,10 +4,10 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/VaalaCat/frp-panel/cache"
-	"github.com/VaalaCat/frp-panel/dao"
-	"github.com/VaalaCat/frp-panel/logger"
-	"github.com/VaalaCat/frp-panel/pb"
+	"fysj.net/v2/cache"
+	"fysj.net/v2/dao"
+	"fysj.net/v2/logger"
+	"fysj.net/v2/pb"
 )
 
 func FRPAuth(ctx context.Context, req *pb.FRPAuthRequest) (*pb.FRPAuthResponse, error) {

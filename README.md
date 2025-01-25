@@ -18,7 +18,7 @@ Our goal is to create a more powerful and comprehensive frp that provides:
 
 ## Project Usage Instructions
 
-frp-panel can be deployed in docker or direct run mode. For direct deployment, please download the files from the release: [release](https://github.com/VaalaCat/frp-panel/releases)
+frp-panel can be deployed in docker or direct run mode. For direct deployment, please download the files from the release: [release](https://fysj.net/v2/releases)
 
 Note: There are two types of binaries, one is for the client only, and the other is a full-featured executable file. The client version will have a "client" identifier in its name.
 

@@ -3,11 +3,11 @@ package server
 import (
 	"context"
 
-	"github.com/VaalaCat/frp-panel/common"
-	"github.com/VaalaCat/frp-panel/dao"
-	"github.com/VaalaCat/frp-panel/models"
-	"github.com/VaalaCat/frp-panel/pb"
-	"github.com/VaalaCat/frp-panel/utils"
+	"fysj.net/v2/common"
+	"fysj.net/v2/dao"
+	"fysj.net/v2/models"
+	"fysj.net/v2/pb"
+	"fysj.net/v2/utils"
 	"github.com/google/uuid"
 )
 
@@ -24,8 +24,8 @@ func InitServerHandler(c context.Context, req *pb.InitServerRequest) (*pb.InitSe
 		}, nil
 	}
 	if !userInfo.IsAdmin() {
-		return &pb.InitClientResponse{
-			Status: &pb.Status{Code: pb.RespCode_RESP_CODE_FORBIDDEN, Message: "permission denied: admin role required"},
+		return &pb.InitServerResponse{
+			Status: &pb.Status{Code: pb.RespCode_RESP_CODE_UNAUTHORIZED, Message: "permission denied: admin role required"},
 		}, nil
 	}
 	if len(userServerID) == 0 || len(serverIP) == 0 || !utils.IsClientIDPermited(userServerID) {

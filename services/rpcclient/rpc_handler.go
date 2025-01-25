@@ -5,9 +5,9 @@ import (
 	"io"
 	"time"
 
-	"github.com/VaalaCat/frp-panel/logger"
-	"github.com/VaalaCat/frp-panel/pb"
-	"github.com/VaalaCat/frp-panel/rpc"
+	"fysj.net/v2/logger"
+	"fysj.net/v2/pb"
+	"fysj.net/v2/rpc"
 	"github.com/google/uuid"
 	"github.com/sirupsen/logrus"
 )

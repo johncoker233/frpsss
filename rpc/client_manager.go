@@ -3,8 +3,8 @@ package rpc
 import (
 	"time"
 
-	"github.com/VaalaCat/frp-panel/pb"
-	"github.com/VaalaCat/frp-panel/utils"
+	"fysj.net/v2/pb"
+	"fysj.net/v2/utils"
 	"google.golang.org/grpc/peer"
 )
 

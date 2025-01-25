@@ -6,9 +6,9 @@ import (
 	"io"
 	"sync"
 
-	"github.com/VaalaCat/frp-panel/common"
-	"github.com/VaalaCat/frp-panel/logger"
-	"github.com/VaalaCat/frp-panel/pb"
+	"fysj.net/v2/common"
+	"fysj.net/v2/logger"
+	"fysj.net/v2/pb"
 	"github.com/google/uuid"
 	"github.com/sirupsen/logrus"
 	"google.golang.org/protobuf/proto"

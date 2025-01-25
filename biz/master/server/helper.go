@@ -3,8 +3,8 @@ package server
 import (
 	"fmt"
 
-	"github.com/VaalaCat/frp-panel/dao"
-	"github.com/VaalaCat/frp-panel/models"
+	"fysj.net/v2/dao"
+	"fysj.net/v2/models"
 )
 
 type ValidateableServerRequest interface {

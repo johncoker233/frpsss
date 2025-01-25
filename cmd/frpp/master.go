@@ -5,24 +5,24 @@ import (
 	"embed"
 	"path/filepath"
 
-	bizmaster "github.com/VaalaCat/frp-panel/biz/master"
-	"github.com/VaalaCat/frp-panel/biz/master/auth"
-	"github.com/VaalaCat/frp-panel/biz/master/proxy"
-	"github.com/VaalaCat/frp-panel/biz/master/streamlog"
-	bizserver "github.com/VaalaCat/frp-panel/biz/server"
-	"github.com/VaalaCat/frp-panel/cache"
-	"github.com/VaalaCat/frp-panel/common"
-	"github.com/VaalaCat/frp-panel/conf"
-	"github.com/VaalaCat/frp-panel/dao"
-	"github.com/VaalaCat/frp-panel/logger"
-	"github.com/VaalaCat/frp-panel/models"
-	"github.com/VaalaCat/frp-panel/pb"
-	"github.com/VaalaCat/frp-panel/rpc"
-	"github.com/VaalaCat/frp-panel/services/api"
-	"github.com/VaalaCat/frp-panel/services/master"
-	"github.com/VaalaCat/frp-panel/services/rpcclient"
-	"github.com/VaalaCat/frp-panel/utils"
-	"github.com/VaalaCat/frp-panel/watcher"
+	bizmaster "fysj.net/v2/biz/master"
+	"fysj.net/v2/biz/master/auth"
+	"fysj.net/v2/biz/master/proxy"
+	"fysj.net/v2/biz/master/streamlog"
+	bizserver "fysj.net/v2/biz/server"
+	"fysj.net/v2/cache"
+	"fysj.net/v2/common"
+	"fysj.net/v2/conf"
+	"fysj.net/v2/dao"
+	"fysj.net/v2/logger"
+	"fysj.net/v2/models"
+	"fysj.net/v2/pb"
+	"fysj.net/v2/rpc"
+	"fysj.net/v2/services/api"
+	"fysj.net/v2/services/master"
+	"fysj.net/v2/services/rpcclient"
+	"fysj.net/v2/utils"
+	"fysj.net/v2/watcher"
 	"github.com/fatedier/golib/crypto"
 	"github.com/glebarez/sqlite"
 	"github.com/sirupsen/logrus"
@@ -32,7 +32,6 @@ import (
 	"gorm.io/gorm"
 )
 
-//go:embed all:out
 var fs embed.FS
 
 func runMaster() {
@@ -59,7 +58,7 @@ func runMaster() {
 	defer r.Stop()
 
 	tasks := watcher.NewClient()
-	tasks.AddCronTask("0 0 3 * * *", proxy.CollectDailyStats)
+	tasks.AddCronTask("@every 5s", proxy.CollectDailyStats)
 	defer tasks.Stop()
 
 	var wg conc.WaitGroup

@@ -5,13 +5,13 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/VaalaCat/frp-panel/biz/master/client"
-	"github.com/VaalaCat/frp-panel/common"
-	"github.com/VaalaCat/frp-panel/dao"
-	"github.com/VaalaCat/frp-panel/logger"
-	"github.com/VaalaCat/frp-panel/models"
-	"github.com/VaalaCat/frp-panel/pb"
-	"github.com/VaalaCat/frp-panel/utils"
+	"fysj.net/v2/biz/master/client"
+	"fysj.net/v2/common"
+	"fysj.net/v2/dao"
+	"fysj.net/v2/logger"
+	"fysj.net/v2/models"
+	"fysj.net/v2/pb"
+	"fysj.net/v2/utils"
 	v1 "github.com/fatedier/frp/pkg/config/v1"
 	"github.com/samber/lo"
 
@@ -30,26 +30,26 @@ func CreateProxyConfig(c context.Context, req *pb.CreateProxyConfigRequest) (*pb
 		serverID = req.GetServerId()
 	)
 
-    if !userInfo.Valid() {
-        return &pb.CreateProxyConfigResponse{
-            Status: &pb.Status{
-                Code:    pb.RespCode_RESP_CODE_INVALID,
-                Message: "invalid user",
-            },
-        }, nil
-    }
+	if !userInfo.Valid() {
+		return &pb.CreateProxyConfigResponse{
+			Status: &pb.Status{
+				Code:    pb.RespCode_RESP_CODE_INVALID,
+				Message: "invalid user",
+			},
+		}, nil
+	}
 
-    // 添加服务器角色权限检查
-    if err := dao.CheckServerRole(userInfo, serverID); err != nil {
-        logger.Logger(c).WithError(err).Errorf("permission denied for server: [%s], user role: [%s]", 
-            serverID, userInfo.GetRole())
-        return &pb.CreateProxyConfigResponse{
-            Status: &pb.Status{
-                Code:    pb.RespCode_RESP_CODE_FORBIDDEN,
-                Message: fmt.Sprintf("permission denied: %v", err),
-            },
-        }, nil
-    }
+	// 添加服务器角色权限检查
+	if err := dao.CheckServerRole(userInfo, serverID); err != nil {
+		logger.Logger(c).WithError(err).Errorf("permission denied for server: [%s], user role: [%s]",
+			serverID, userInfo.GetRole())
+		return &pb.CreateProxyConfigResponse{
+			Status: &pb.Status{
+				Code:    pb.RespCode_RESP_CODE_UNAUTHORIZED,
+				Message: fmt.Sprintf("permission denied: %v", err),
+			},
+		}, nil
+	}
 	// 1. 检查是否有已连接该服务端的客户端
 	// 2. 检查是否有Shadow客户端
 	// 3. 如果没有，则新建Shadow客户端和子客户端

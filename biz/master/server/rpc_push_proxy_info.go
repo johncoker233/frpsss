@@ -3,9 +3,9 @@ package server
 import (
 	"context"
 
-	"github.com/VaalaCat/frp-panel/dao"
-	"github.com/VaalaCat/frp-panel/models"
-	"github.com/VaalaCat/frp-panel/pb"
+	"fysj.net/v2/dao"
+	"fysj.net/v2/models"
+	"fysj.net/v2/pb"
 )
 
 func PushProxyInfo(ctx context.Context, req *pb.PushProxyInfoReq) (*pb.PushProxyInfoResp, error) {

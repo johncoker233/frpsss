@@ -3,9 +3,9 @@ package server
 import (
 	"context"
 
-	"github.com/VaalaCat/frp-panel/biz/common"
-	"github.com/VaalaCat/frp-panel/conf"
-	"github.com/VaalaCat/frp-panel/pb"
+	"fysj.net/v2/biz/common"
+	"fysj.net/v2/conf"
+	"fysj.net/v2/pb"
 )
 
 func StartPTYConnect(c context.Context, req *pb.CommonRequest) (*pb.CommonResponse, error) {

@@ -6,11 +6,11 @@ import (
 	"io"
 	"sync"
 
-	"github.com/VaalaCat/frp-panel/biz/master/client"
-	"github.com/VaalaCat/frp-panel/biz/master/server"
-	"github.com/VaalaCat/frp-panel/logger"
-	"github.com/VaalaCat/frp-panel/pb"
-	"github.com/VaalaCat/frp-panel/utils"
+	"fysj.net/v2/biz/master/client"
+	"fysj.net/v2/biz/master/server"
+	"fysj.net/v2/logger"
+	"fysj.net/v2/pb"
+	"fysj.net/v2/utils"
 )
 
 const (

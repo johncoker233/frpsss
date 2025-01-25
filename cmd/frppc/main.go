@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/VaalaCat/frp-panel/conf"
-	"github.com/VaalaCat/frp-panel/rpc"
+	"fysj.net/v2/conf"
+	"fysj.net/v2/rpc"
 	"github.com/spf13/cobra"
 )
 

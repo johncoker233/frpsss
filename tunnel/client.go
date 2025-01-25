@@ -3,9 +3,9 @@ package tunnel
 import (
 	"context"
 
-	"github.com/VaalaCat/frp-panel/logger"
-	"github.com/VaalaCat/frp-panel/services/client"
-	"github.com/VaalaCat/frp-panel/utils"
+	"fysj.net/v2/logger"
+	"fysj.net/v2/services/client"
+	"fysj.net/v2/utils"
 )
 
 type ClientController interface {

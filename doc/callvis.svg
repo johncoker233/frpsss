@@ -17,7 +17,7 @@
 </g>
 <g id="clust15" class="cluster">
 <title>cluster_github.com/VaalaCat/frp&#45;panel/watcher</title>
-<g id="a_clust15"><a xlink:href="/?f=github.com/VaalaCat/frp-panel/watcher" xlink:title="package: github.com/VaalaCat/frp&#45;panel/watcher">
+<g id="a_clust15"><a xlink:href="/?f=fysj.net/v2/watcher" xlink:title="package: github.com/VaalaCat/frp&#45;panel/watcher">
 <polygon fill="#ffffe0" stroke="#000000" stroke-width=".8" points="355.6757,-1267.8 355.6757,-1407.8 456.2711,-1407.8 456.2711,-1267.8 355.6757,-1267.8"/>
 <text text-anchor="middle" x="405.9734" y="-1389.4" font-family="Tahoma bold" font-size="16.00" fill="#000000">watcher</text>
 </a>
@@ -25,7 +25,7 @@
 </g>
 <g id="clust14" class="cluster">
 <title>cluster_github.com/VaalaCat/frp&#45;panel/utils</title>
-<g id="a_clust14"><a xlink:href="/?f=github.com/VaalaCat/frp-panel/utils" xlink:title="package: github.com/VaalaCat/frp&#45;panel/utils">
+<g id="a_clust14"><a xlink:href="/?f=fysj.net/v2/utils" xlink:title="package: github.com/VaalaCat/frp&#45;panel/utils">
 <polygon fill="#ffffe0" stroke="#000000" stroke-width=".8" points="550.4124,-241.8 550.4124,-381.8 782.7968,-381.8 782.7968,-241.8 550.4124,-241.8"/>
 <text text-anchor="middle" x="666.6046" y="-363.4" font-family="Tahoma bold" font-size="16.00" fill="#000000">utils</text>
 </a>
@@ -33,7 +33,7 @@
 </g>
 <g id="clust13" class="cluster">
 <title>cluster_github.com/VaalaCat/frp&#45;panel/services/server</title>
-<g id="a_clust13"><a xlink:href="/?f=github.com/VaalaCat/frp-panel/services/server" xlink:title="package: github.com/VaalaCat/frp&#45;panel/services/server">
+<g id="a_clust13"><a xlink:href="/?f=fysj.net/v2/services/server" xlink:title="package: github.com/VaalaCat/frp&#45;panel/services/server">
 <polygon fill="#ffffe0" stroke="#000000" stroke-width=".8" points="344.6122,-93.8 344.6122,-172.8 467.3346,-172.8 467.3346,-93.8 344.6122,-93.8"/>
 <text text-anchor="middle" x="405.9734" y="-154.4" font-family="Tahoma bold" font-size="16.00" fill="#000000">server</text>
 </a>
@@ -41,7 +41,7 @@
 </g>
 <g id="clust12" class="cluster">
 <title>cluster_github.com/VaalaCat/frp&#45;panel/services/rpcclient</title>
-<g id="a_clust12"><a xlink:href="/?f=github.com/VaalaCat/frp-panel/services/rpcclient" xlink:title="package: github.com/VaalaCat/frp&#45;panel/services/rpcclient">
+<g id="a_clust12"><a xlink:href="/?f=fysj.net/v2/services/rpcclient" xlink:title="package: github.com/VaalaCat/frp&#45;panel/services/rpcclient">
 <polygon fill="#ffffe0" stroke="#000000" stroke-width=".8" points="318.5344,-1058.8 318.5344,-1259.8 493.4124,-1259.8 493.4124,-1058.8 318.5344,-1058.8"/>
 <text text-anchor="middle" x="405.9734" y="-1241.4" font-family="Tahoma bold" font-size="16.00" fill="#000000">rpcclient</text>
 </a>
@@ -49,7 +49,7 @@
 </g>
 <g id="clust11" class="cluster">
 <title>cluster_github.com/VaalaCat/frp&#45;panel/services/master</title>
-<g id="a_clust11"><a xlink:href="/?f=github.com/VaalaCat/frp-panel/services/master" xlink:title="package: github.com/VaalaCat/frp&#45;panel/services/master">
+<g id="a_clust11"><a xlink:href="/?f=fysj.net/v2/services/master" xlink:title="package: github.com/VaalaCat/frp&#45;panel/services/master">
 <polygon fill="#ffffe0" stroke="#000000" stroke-width=".8" points="329.439,-533.8 329.439,-673.8 482.5078,-673.8 482.5078,-533.8 329.439,-533.8"/>
 <text text-anchor="middle" x="405.9734" y="-655.4" font-family="Tahoma bold" font-size="16.00" fill="#000000">master</text>
 </a>
@@ -57,7 +57,7 @@
 </g>
 <g id="clust10" class="cluster">
 <title>cluster_github.com/VaalaCat/frp&#45;panel/services/api</title>
-<g id="a_clust10"><a xlink:href="/?f=github.com/VaalaCat/frp-panel/services/api" xlink:title="package: github.com/VaalaCat/frp&#45;panel/services/api">
+<g id="a_clust10"><a xlink:href="/?f=fysj.net/v2/services/api" xlink:title="package: github.com/VaalaCat/frp&#45;panel/services/api">
 <polygon fill="#ffffe0" stroke="#000000" stroke-width=".8" points="338.3752,-849.8 338.3752,-1050.8 473.5716,-1050.8 473.5716,-849.8 338.3752,-849.8"/>
 <text text-anchor="middle" x="405.9734" y="-1032.4" font-family="Tahoma bold" font-size="16.00" fill="#000000">api</text>
 </a>
@@ -65,7 +65,7 @@
 </g>
 <g id="clust9" class="cluster">
 <title>cluster_github.com/VaalaCat/frp&#45;panel/rpc</title>
-<g id="a_clust9"><a xlink:href="/?f=github.com/VaalaCat/frp-panel/rpc" xlink:title="package: github.com/VaalaCat/frp&#45;panel/rpc">
+<g id="a_clust9"><a xlink:href="/?f=fysj.net/v2/rpc" xlink:title="package: github.com/VaalaCat/frp&#45;panel/rpc">
 <polygon fill="#ffffe0" stroke="#000000" stroke-width=".8" points="611.822,-40.8 611.822,-119.8 721.3872,-119.8 721.3872,-40.8 611.822,-40.8"/>
 <text text-anchor="middle" x="666.6046" y="-101.4" font-family="Tahoma bold" font-size="16.00" fill="#000000">rpc</text>
 </a>
@@ -73,7 +73,7 @@
 </g>
 <g id="clust8" class="cluster">
 <title>cluster_github.com/VaalaCat/frp&#45;panel/models</title>
-<g id="a_clust8"><a xlink:href="/?f=github.com/VaalaCat/frp-panel/models" xlink:title="package: github.com/VaalaCat/frp&#45;panel/models">
+<g id="a_clust8"><a xlink:href="/?f=fysj.net/v2/models" xlink:title="package: github.com/VaalaCat/frp&#45;panel/models">
 <polygon fill="#ffffe0" stroke="#000000" stroke-width=".8" points="580.9331,-720.8 580.9331,-982.8 752.2761,-982.8 752.2761,-720.8 580.9331,-720.8"/>
 <text text-anchor="middle" x="666.6046" y="-964.4" font-family="Tahoma bold" font-size="16.00" fill="#000000">models</text>
 </a>
@@ -81,7 +81,7 @@
 </g>
 <g id="clust7" class="cluster">
 <title>cluster_github.com/VaalaCat/frp&#45;panel/conf</title>
-<g id="a_clust7"><a xlink:href="/?f=github.com/VaalaCat/frp-panel/conf" xlink:title="package: github.com/VaalaCat/frp&#45;panel/conf">
+<g id="a_clust7"><a xlink:href="/?f=fysj.net/v2/conf" xlink:title="package: github.com/VaalaCat/frp&#45;panel/conf">
 <polygon fill="#ffffe0" stroke="#000000" stroke-width=".8" points="592.0148,-389.8 592.0148,-712.8 741.1944,-712.8 741.1944,-389.8 592.0148,-389.8"/>
 <text text-anchor="middle" x="666.6046" y="-694.4" font-family="Tahoma bold" font-size="16.00" fill="#000000">conf</text>
 </a>
@@ -89,7 +89,7 @@
 </g>
 <g id="clust6" class="cluster">
 <title>cluster_github.com/VaalaCat/frp&#45;panel/cache</title>
-<g id="a_clust6"><a xlink:href="/?f=github.com/VaalaCat/frp-panel/cache" xlink:title="package: github.com/VaalaCat/frp&#45;panel/cache">
+<g id="a_clust6"><a xlink:href="/?f=fysj.net/v2/cache" xlink:title="package: github.com/VaalaCat/frp&#45;panel/cache">
 <polygon fill="#ffffe0" stroke="#000000" stroke-width=".8" points="366.7623,-400.8 366.7623,-479.8 445.1845,-479.8 445.1845,-400.8 366.7623,-400.8"/>
 <text text-anchor="middle" x="405.9734" y="-461.4" font-family="Tahoma bold" font-size="16.00" fill="#000000">cache</text>
 </a>
@@ -97,7 +97,7 @@
 </g>
 <g id="clust5" class="cluster">
 <title>cluster_github.com/VaalaCat/frp&#45;panel/biz/server</title>
-<g id="a_clust5"><a xlink:href="/?f=github.com/VaalaCat/frp-panel/biz/server" xlink:title="package: github.com/VaalaCat/frp&#45;panel/biz/server">
+<g id="a_clust5"><a xlink:href="/?f=fysj.net/v2/biz/server" xlink:title="package: github.com/VaalaCat/frp&#45;panel/biz/server">
 <polygon fill="#ffffe0" stroke="#000000" stroke-width=".8" points="622.3395,-990.8 622.3395,-1130.8 710.8697,-1130.8 710.8697,-990.8 622.3395,-990.8"/>
 <text text-anchor="middle" x="666.6046" y="-1112.4" font-family="Tahoma bold" font-size="16.00" fill="#000000">server</text>
 </a>
@@ -105,7 +105,7 @@
 </g>
 <g id="clust4" class="cluster">
 <title>cluster_github.com/VaalaCat/frp&#45;panel/biz/master/auth</title>
-<g id="a_clust4"><a xlink:href="/?f=github.com/VaalaCat/frp-panel/biz/master/auth" xlink:title="package: github.com/VaalaCat/frp&#45;panel/biz/master/auth">
+<g id="a_clust4"><a xlink:href="/?f=fysj.net/v2/biz/master/auth" xlink:title="package: github.com/VaalaCat/frp&#45;panel/biz/master/auth">
 <polygon fill="#ffffe0" stroke="#000000" stroke-width=".8" points="370.2539,-313.8 370.2539,-392.8 441.6929,-392.8 441.6929,-313.8 370.2539,-313.8"/>
 <text text-anchor="middle" x="405.9734" y="-374.4" font-family="Tahoma bold" font-size="16.00" fill="#000000">auth</text>
 </a>
@@ -113,7 +113,7 @@
 </g>
 <g id="clust3" class="cluster">
 <title>cluster_github.com/VaalaCat/frp&#45;panel/biz/master</title>
-<g id="a_clust3"><a xlink:href="/?f=github.com/VaalaCat/frp-panel/biz/master" xlink:title="package: github.com/VaalaCat/frp&#45;panel/biz/master">
+<g id="a_clust3"><a xlink:href="/?f=fysj.net/v2/biz/master" xlink:title="package: github.com/VaalaCat/frp&#45;panel/biz/master">
 <polygon fill="#ffffe0" stroke="#000000" stroke-width=".8" points="361.7083,-226.8 361.7083,-305.8 450.2385,-305.8 450.2385,-226.8 361.7083,-226.8"/>
 <text text-anchor="middle" x="405.9734" y="-287.4" font-family="Tahoma bold" font-size="16.00" fill="#000000">master</text>
 </a>
@@ -121,7 +121,7 @@
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_github.com/VaalaCat/frp&#45;panel/biz/client</title>
-<g id="a_clust2"><a xlink:href="/?f=github.com/VaalaCat/frp-panel/biz/client" xlink:title="package: github.com/VaalaCat/frp&#45;panel/biz/client">
+<g id="a_clust2"><a xlink:href="/?f=fysj.net/v2/biz/client" xlink:title="package: github.com/VaalaCat/frp&#45;panel/biz/client">
 <polygon fill="#ffffe0" stroke="#000000" stroke-width=".8" points="623.8788,-1372.8 623.8788,-1451.8 709.3304,-1451.8 709.3304,-1372.8 623.8788,-1372.8"/>
 <text text-anchor="middle" x="666.6046" y="-1433.4" font-family="Tahoma bold" font-size="16.00" fill="#000000">client</text>
 </a>

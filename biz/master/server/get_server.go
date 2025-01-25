@@ -3,9 +3,9 @@ package server
 import (
 	"context"
 
-	"github.com/VaalaCat/frp-panel/common"
-	"github.com/VaalaCat/frp-panel/dao"
-	"github.com/VaalaCat/frp-panel/pb"
+	"fysj.net/v2/common"
+	"fysj.net/v2/dao"
+	"fysj.net/v2/pb"
 	"github.com/samber/lo"
 )
 
@@ -21,8 +21,8 @@ func GetServerHandler(c context.Context, req *pb.GetServerRequest) (*pb.GetServe
 		}, nil
 	}
 	if !userInfo.IsAdmin() {
-		return &pb.InitClientResponse{
-			Status: &pb.Status{Code: pb.RespCode_RESP_CODE_FORBIDDEN, Message: "permission denied: admin role required"},
+		return &pb.GetServerResponse{
+			Status: &pb.Status{Code: pb.RespCode_RESP_CODE_UNAUTHORIZED, Message: "permission denied: admin role required"},
 		}, nil
 	}
 	if len(userServerID) == 0 {

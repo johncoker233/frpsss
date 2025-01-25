@@ -3,11 +3,11 @@ package client
 import (
 	"context"
 
-	"github.com/VaalaCat/frp-panel/biz/common"
-	"github.com/VaalaCat/frp-panel/conf"
-	"github.com/VaalaCat/frp-panel/pb"
-	"github.com/VaalaCat/frp-panel/services/rpcclient"
-	"github.com/VaalaCat/frp-panel/utils"
+	"fysj.net/v2/biz/common"
+	"fysj.net/v2/conf"
+	"fysj.net/v2/pb"
+	"fysj.net/v2/services/rpcclient"
+	"fysj.net/v2/utils"
 	"github.com/sirupsen/logrus"
 )
 

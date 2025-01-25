@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"errors"
 
-	"github.com/VaalaCat/frp-panel/logger"
-	"github.com/VaalaCat/frp-panel/utils"
+	"fysj.net/v2/logger"
+	"fysj.net/v2/utils"
 	v1 "github.com/fatedier/frp/pkg/config/v1"
 	"github.com/tiendc/go-deepcopy"
 )

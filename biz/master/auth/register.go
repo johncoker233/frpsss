@@ -4,11 +4,11 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/VaalaCat/frp-panel/conf"
-	"github.com/VaalaCat/frp-panel/dao"
-	"github.com/VaalaCat/frp-panel/models"
-	"github.com/VaalaCat/frp-panel/pb"
-	"github.com/VaalaCat/frp-panel/utils"
+	"fysj.net/v2/conf"
+	"fysj.net/v2/dao"
+	"fysj.net/v2/models"
+	"fysj.net/v2/pb"
+	"fysj.net/v2/utils"
 	"github.com/google/uuid"
 )
 

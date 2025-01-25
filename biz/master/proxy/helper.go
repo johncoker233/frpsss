@@ -1,8 +1,8 @@
 package proxy
 
 import (
-	"github.com/VaalaCat/frp-panel/models"
-	"github.com/VaalaCat/frp-panel/pb"
+	"fysj.net/v2/models"
+	"fysj.net/v2/pb"
 	"github.com/samber/lo"
 )
 

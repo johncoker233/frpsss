@@ -4,10 +4,10 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/VaalaCat/frp-panel/logger"
-	"github.com/VaalaCat/frp-panel/pb"
-	"github.com/VaalaCat/frp-panel/services/rpcclient"
-	"github.com/VaalaCat/frp-panel/utils/pty"
+	"fysj.net/v2/logger"
+	"fysj.net/v2/pb"
+	"fysj.net/v2/services/rpcclient"
+	"fysj.net/v2/utils/pty"
 	"github.com/google/uuid"
 	"github.com/sourcegraph/conc"
 )

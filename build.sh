@@ -51,7 +51,7 @@ echo "Build Date: $BUILD_DATE"
 echo "Git Commit: $GIT_COMMIT"
 echo "Version: $VERSION"
 
-BUILD_LD_FLAGS="-X 'github.com/VaalaCat/frp-panel/conf.buildDate=${BUILD_DATE}' -X 'github.com/VaalaCat/frp-panel/conf.gitCommit=${GIT_COMMIT}' -X 'github.com/VaalaCat/frp-panel/conf.gitVersion=${VERSION}' -X 'github.com/VaalaCat/frp-panel/conf.gitBranch=${GIT_BRANCH}'"
+BUILD_LD_FLAGS="-X 'fysj.net/v2/conf.buildDate=${BUILD_DATE}' -X 'fysj.net/v2/conf.gitCommit=${GIT_COMMIT}' -X 'fysj.net/v2/conf.gitVersion=${VERSION}' -X 'fysj.net/v2/conf.gitBranch=${GIT_BRANCH}'"
 
 if [[ "$SKIP_FRONTEND" == "true" ]]; then
     echo "Skipping frontend build"

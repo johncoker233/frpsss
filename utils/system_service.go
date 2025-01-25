@@ -43,7 +43,7 @@ func CreateSystemService(args []string, run func()) (service.Service, error) {
 	svcConfig := &service.Config{
 		Name:             "frpp",
 		DisplayName:      "frp-panel",
-		Description:      "this is frp-panel service, developed by [VaalaCat] - https://github.com/VaalaCat/frp-panel",
+		Description:      "this is frp-panel service, developed by [VaalaCat] - https://fysj.net/v2",
 		Arguments:        args,
 		WorkingDirectory: path.Dir(currentPath),
 	}

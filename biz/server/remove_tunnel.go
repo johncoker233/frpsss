@@ -4,9 +4,9 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/VaalaCat/frp-panel/logger"
-	"github.com/VaalaCat/frp-panel/pb"
-	"github.com/VaalaCat/frp-panel/tunnel"
+	"fysj.net/v2/logger"
+	"fysj.net/v2/pb"
+	"fysj.net/v2/tunnel"
 )
 
 func RemoveFrpsHandler(ctx context.Context, req *pb.RemoveFRPSRequest) (*pb.RemoveFRPSResponse, error) {

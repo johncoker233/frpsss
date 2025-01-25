@@ -3,7 +3,7 @@ package dao
 import (
 	"fmt"
 
-	"github.com/VaalaCat/frp-panel/models"
+	"fysj.net/v2/models"
 	"gorm.io/gorm"
 )
 

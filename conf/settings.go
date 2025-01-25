@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/VaalaCat/frp-panel/common"
-	"github.com/VaalaCat/frp-panel/logger"
+	"fysj.net/v2/common"
+	"fysj.net/v2/logger"
 	"github.com/ilyakaznacheev/cleanenv"
 	"github.com/joho/godotenv"
 	"github.com/sirupsen/logrus"

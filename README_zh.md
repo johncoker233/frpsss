@@ -20,7 +20,7 @@
 
 ## 项目使用说明
 
-frp-panel 可选 docker 和直接运行模式部署，直接部署请到 release 下载文件：[release](https://github.com/VaalaCat/frp-panel/releases)
+frp-panel 可选 docker 和直接运行模式部署，直接部署请到 release 下载文件：[release](https://fysj.net/v2/releases)
 
 注意：二进制有两种，一种是仅客户端，一种是全功能可执行文件，客户端版只能执行 client 命令(无需 client 参数)
 

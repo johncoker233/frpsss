@@ -3,9 +3,9 @@ package client
 import (
 	"context"
 
-	"github.com/VaalaCat/frp-panel/conf"
-	"github.com/VaalaCat/frp-panel/logger"
-	"github.com/VaalaCat/frp-panel/pb"
+	"fysj.net/v2/conf"
+	"fysj.net/v2/logger"
+	"fysj.net/v2/pb"
 )
 
 func StartFRPCHandler(ctx context.Context, req *pb.StartFRPCRequest) (*pb.StartFRPCResponse, error) {

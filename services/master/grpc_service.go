@@ -3,7 +3,7 @@ package master
 import (
 	"context"
 
-	"github.com/VaalaCat/frp-panel/logger"
+	"fysj.net/v2/logger"
 	"github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"

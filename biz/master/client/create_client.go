@@ -3,11 +3,11 @@ package client
 import (
 	"context"
 
-	"github.com/VaalaCat/frp-panel/common"
-	"github.com/VaalaCat/frp-panel/dao"
-	"github.com/VaalaCat/frp-panel/models"
-	"github.com/VaalaCat/frp-panel/pb"
-	"github.com/VaalaCat/frp-panel/utils"
+	"fysj.net/v2/common"
+	"fysj.net/v2/dao"
+	"fysj.net/v2/models"
+	"fysj.net/v2/pb"
+	"fysj.net/v2/utils"
 	"github.com/google/uuid"
 )
 
@@ -20,7 +20,6 @@ func InitClientHandler(c context.Context, req *pb.InitClientRequest) (*pb.InitCl
 			Status: &pb.Status{Code: pb.RespCode_RESP_CODE_INVALID, Message: "invalid user"},
 		}, nil
 	}
-
 
 	if len(userClientID) == 0 || !utils.IsClientIDPermited(userClientID) {
 		return &pb.InitClientResponse{

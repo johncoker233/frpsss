@@ -1,5 +1,14 @@
 package dao
 
+import (
+	"fmt"
+
+	"fysj.net/v2/models"
+    "gorm.io/gorm"
+)
+
+var DB *gorm.DB
+
 func CheckServerRole(userInfo models.UserInfo, serverID string) error {
     var serverRole models.ServerRole
     result := DB.Where("server_id = ?", serverID).First(&serverRole)

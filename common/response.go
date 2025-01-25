@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/VaalaCat/frp-panel/pb"
+	"fysj.net/v2/pb"
 	"github.com/gin-gonic/gin"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/reflect/protoreflect"

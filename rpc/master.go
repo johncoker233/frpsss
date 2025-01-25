@@ -4,9 +4,9 @@ import (
 	"context"
 	"errors"
 
-	"github.com/VaalaCat/frp-panel/common"
-	"github.com/VaalaCat/frp-panel/conf"
-	"github.com/VaalaCat/frp-panel/pb"
+	"fysj.net/v2/common"
+	"fysj.net/v2/conf"
+	"fysj.net/v2/pb"
 	"github.com/imroc/req/v3"
 	"github.com/sirupsen/logrus"
 	"google.golang.org/grpc"

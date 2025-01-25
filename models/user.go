@@ -93,7 +93,7 @@ func (u *UserEntity) GetSafeUserInfo() UserEntity {
 		Status:   u.Status,
 		Role:     u.Role,
 		Bandwidth:u.Bandwidth,
-		balance:  u.balance
+		balance:  u.balance,
 	}
 }
 

@@ -4,11 +4,11 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/VaalaCat/frp-panel/logger"
-	"github.com/VaalaCat/frp-panel/pb"
-	"github.com/VaalaCat/frp-panel/services/server"
-	"github.com/VaalaCat/frp-panel/tunnel"
-	"github.com/VaalaCat/frp-panel/utils"
+	"fysj.net/v2/logger"
+	"fysj.net/v2/pb"
+	"fysj.net/v2/services/server"
+	"fysj.net/v2/tunnel"
+	"fysj.net/v2/utils"
 )
 
 func UpdateFrpsHander(ctx context.Context, req *pb.UpdateFRPSRequest) (*pb.UpdateFRPSResponse, error) {
